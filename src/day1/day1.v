@@ -1,7 +1,9 @@
+module day1
+
 import encoding.utf8 { is_number }
 import regex
 
-fn day_1(data string) {
+pub fn solve(data string) {
 	// println('data:\n${data}')
 
 	println('part 1: ${part_1(data)}')

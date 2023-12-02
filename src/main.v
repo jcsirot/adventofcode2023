@@ -3,6 +3,7 @@ module main
 import cli { Command, Flag }
 import os
 import strconv { atoi }
+import day1
 
 fn main() {
 	mut cmd := Command{
@@ -41,7 +42,7 @@ fn aoc_func(cmd Command) ! {
     }
 
 	match day {
-		1 { day_1(content) }
+		1 { day1.solve(content) }
 		else { return error('Day ${day} Not Yet Implemented') }
 	}
 }
