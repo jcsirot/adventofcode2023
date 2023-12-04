@@ -6,6 +6,7 @@ import strconv { atoi }
 import day1
 import day2
 import day3
+import day4
 
 fn main() {
 	mut cmd := Command{
@@ -47,6 +48,7 @@ fn aoc_func(cmd Command) ! {
 		1 { day1.solve(content) }
 		2 { day2.solve(content) }
 		3 { day3.solve(content) }
+		4 { day4.solve(content) }
 		else { return error('Day ${day} Not Yet Implemented') }
 	}
 }
