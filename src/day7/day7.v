@@ -1,7 +1,5 @@
 module day7
 
-import arrays
-
 pub fn solve(data string) {
 	// println('data:\n${data}')
 
@@ -122,43 +120,41 @@ fn get_type(hand string) int {
 		m[c] += 1
 	}
 	if m.values().len == 1 {
-		return 6
+		return 6 // five of a kind
 	} else if m.values().contains(4) {
-		return 5
+		return 5 // four of a kind
 	} else if m.values().contains(3) && m.values().contains(2) {
-		return 4
+		return 4 // full house
 	} else if m.values().contains(3) {
-		return 3
+		return 3 // three of a kind
 	} else if m.values().len == 3 && m.values().contains(2) {
-		return 2
+		return 2 // two pairs
 	} else if m.values().contains(2) {
-		return 1
+		return 1 // one pair
 	} else {
-		return 0
+		return 0 // high card
 	}
 }
 
 fn compute_best_type(hand string) int {
-	mut types := map[int]string{}
-	evaluate_hands([hand], mut &types)
-	return arrays.max(types.keys()) or { panic('key not found') }
-}
-
-fn evaluate_hands(hands []string, mut types &map[int]string) {
-	for hand in hands {
-		if hand.contains('J') {
-			evaluate_hands(emit_hands(hand), mut &types)
-		} else {
-			typ := get_type(hand)
-			types[typ] = hand
+	if hand.contains('J') {
+		if hand == 'JJJJJ' {
+			return 6
+		} else if get_type(hand) == 5 { // four of a kind => five of a kind
+			return 6
+		} else if get_type(hand) == 4 { // full house (JJJAA or JJAAA) => five of a kind
+			return 6
+		} else if get_type(hand) == 3 { // three of a kind (JJJAB or AAAJB)=> four house
+			return 5
+		} else if get_type(hand) == 2 && hand.count('J') == 2 { // two pairs (JJAAB) => four of a kind
+			return 5
+		} else if get_type(hand) == 2 && hand.count('J') == 1 { // two pairs (AABBJ) => full house
+			return 4
+		} else if get_type(hand) == 1 { // one pair (JJABC or AAJBC) => three of a kind
+			return 3
+		} else { // high card (JABCD) => one pair
+			return 1 
 		}
 	}
-}
-
-fn emit_hands(hand string) []string {
-	mut arr := []string{}
-	for c in ['A', 'K', 'Q', 'T', '9', '8', '7', '6', '5', '4', '3', '2'] {
-		arr << hand.replace_once('J', c)
-	}
-	return arr
+	return get_type(hand)
 }
