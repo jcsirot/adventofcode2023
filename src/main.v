@@ -15,6 +15,7 @@ import day9
 import day10
 import day11
 import day12
+import day13
 
 fn main() {
 	mut cmd := Command{
@@ -66,6 +67,7 @@ fn aoc_func(cmd Command) ! {
 		10 { day10.solve(content) }
 		11 { day11.solve(content) }
 		12 { day12.solve(content) }
+		13 { day13.solve(content) }
 		else { return error('Day ${day} Not Yet Implemented') }
 	}
 }
