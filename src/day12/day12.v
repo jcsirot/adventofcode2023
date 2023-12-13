@@ -1,7 +1,5 @@
 module day12
 
-import arrays
-
 pub fn solve(data string) {
 	// println('data:\n${data}')
 
