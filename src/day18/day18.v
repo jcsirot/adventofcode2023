@@ -1,9 +1,7 @@
 module day18
 
-import arrays
 import math
 import strconv
-import strings
 
 pub fn solve(data string) {
 	// println('data:\n${data}')
